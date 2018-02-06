@@ -5,7 +5,7 @@
 ;; Maintainer: Étienne BERSAC <bersace03@laposte.net>
 ;; Modifier:   Kentaro NAKAZAWA <kentaro.nakazawa@nifty.com>
 ;; Created:    2008 May the 4th
-;; Modified:   April 2011
+;; Modified:   2018/2/6
 ;; Version:    0.1
 ;; Keywords:   vala languages oop
 
@@ -116,6 +116,16 @@
 (c-lang-defconst c-opt-after-id-concat-key
   vala (if (c-lang-const c-opt-identifier-concat-key)
 	   (c-lang-const c-symbol-start)))
+
+(c-lang-defconst c-make-top-level-kwds
+  "Keywords which make declarations they introduce be handled as top-level."
+  t    nil
+  vala '("extern"))
+
+(c-lang-defconst c-make-top-level-key
+  ;; A regexp which matches any `c-make-top-level-kwds' keyword.
+  t (c-make-keywords-re t (c-lang-const c-make-top-level-kwds)))
+(c-lang-defvar c-make-top-level-key (c-lang-const c-make-top-level-key))
 
 (c-lang-defconst c-basic-matchers-before
   vala `(
